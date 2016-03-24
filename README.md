@@ -1,8 +1,8 @@
 # Intro
-This project aims to help with the following things:
+This project aims to help you setting up a development environment for Spark running on top of mesos with only a few commands. It brings you the following things:
 - Fire up a full minimum mesos cluster containing 1 zookeeper, 1 master and 1 slave, with Marathon and Chronos running.
 - Run a jupyter notebook server with spark 1.6.0 and mesos 0.28.0 installed.
-- Develop spark codes using jupyter and run directly with the Mesos cluster.
+- Run spark codes written in jupyter directly with the Mesos cluster.
 
 **Note: Everything runs on docker and for now it only runs on a single machine with docker-machine and virtualbox installed.**
 
@@ -12,7 +12,7 @@ If you don't have docker-machine and virtualbox installed yet. Do it.
 - [Docker Machine](https://docs.docker.com/machine/install-machine/)
 - [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
 
-Now you can:
+Let's assuem that you have these installed already, Now you can:
 ```shell
 cd local
 
@@ -25,8 +25,7 @@ DOCKER_MACHINE=your-docker-machine-name
 . firup.sh
 ```
 
-Up to this point you should see a full minumum mesos cluster running in docker, you can find the images we use,
-it's from [Mesosphere](https://hub.docker.com/u/mesosphere/) and [Mesoscloud](https://hub.docker.com/u/mesoscloud/) 
+Up to this point you should see a full minumum mesos cluster running in docker, you can find the images we use from [Mesosphere](https://hub.docker.com/u/mesosphere/) and [Mesoscloud](https://hub.docker.com/u/mesoscloud/) 
 ```
 CONTAINER ID        IMAGE                                                                                             NAMES
 50fcae67dd93        mesosphere/chronos:chronos-2.4.0-0.1.20150828104228.ubuntu1404-mesos-0.27.0-0.2.190.ubuntu1404    chronos
@@ -63,8 +62,7 @@ DOCKER_MACHINE=your-docker-machine-name
 SPARK_IMAGE=your-spark-image
 . run_jupyter.sh
 ```
-And you should see it's running as a container:
-```
+And you should see the docker container is running
 CONTAINER ID        IMAGE                                                                                            NAMES
 3bc3c8057c9f        wumuxian/jupyter-spark-mesos                                                                     jupyter-spark-mesos
 ```
@@ -94,11 +92,10 @@ CONTAINER ID        IMAGE                                                       
 ```
 
 Till now you already have a full minimum Mesos Cluster running on your docker machine and you have a jupyter notebook running,
-on which you can write your spark jobs and submit it to Mesos, enjoy.
+on which you can write your spark jobs and submit it to Mesos to run, enjoy.
 
 If you wish to tear down the cluster, do the following:
 ```shell
-
 #Tear down the Mesos cluster:
 DOCKER_MACHINE=your-docker-machine-name
 . teardown.sh
@@ -106,6 +103,6 @@ DOCKER_MACHINE=your-docker-machine-name
 This will remove all the spark executor containers, jupyter server container and all the mesos related containers.
 
 #Reference
-[wangqiang8511/spark-demo](https://github.com/wangqiang8511/spark-demo)
-[jupyter/docker-stacks](https://github.com/jupyter/docker-stacks)
+- [wangqiang8511/spark-demo](https://github.com/wangqiang8511/spark-demo)
+- [jupyter/docker-stacks](https://github.com/jupyter/docker-stacks)
 
