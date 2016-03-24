@@ -1,4 +1,4 @@
-DOCKER_MACHINE=mydockermachine
+DOCKER_MACHINE=${DOCKER_MACHINE:-mydockermachine}
 eval $(docker-machine env $DOCKER_MACHINE)
 HOST_IP=$(docker-machine ip $DOCKER_MACHINE)
 

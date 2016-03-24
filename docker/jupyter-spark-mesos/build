@@ -1,2 +1,2 @@
-IMAGE=wumuxian/jupyter-spark-mesos
+IMAGE=${IMAGE:-wumuxian/jupyter-spark-mesos}
 docker build -t $IMAGE .

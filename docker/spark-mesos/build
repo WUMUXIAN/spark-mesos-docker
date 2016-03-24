@@ -1,3 +1,3 @@
-IMAGE=wumuxian/spark-mesos
-VERSION=1.6.0-0.27.0
+IMAGE=${IMAGE:-wumuxian/spark-mesos}
+VERSION=${VERSION:-1.6.0-0.27.0}
 docker build -t $IMAGE:$VERSION .
