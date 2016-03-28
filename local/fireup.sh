@@ -22,8 +22,8 @@ function start_mesos_master {
         --zk=zk://${HOST_IP}:2181/mesos \
         --work_dir=/var/lib/mesos/master \
         --quorum=1 \
-        --hostname=${HOST_IP}\
-        --ip=${HOST_IP}\
+        --hostname=${HOST_IP} \
+        --ip=${HOST_IP} \
         --no-hostname_lookup \
         --cluster=mesostest
 }
@@ -40,6 +40,7 @@ function start_mesos_slave {
         -v /sys:/sys:ro \
         mesosphere/mesos-slave:0.27.0-0.2.190.ubuntu1404 \
         --master=zk://${HOST_IP}:2181/mesos \
+        --ip=${HOST_IP} \
         --containerizers=docker,mesos \
         --no-switch_user
 }
@@ -73,7 +74,8 @@ function start_chronos {
 function update_etc_host {
     echo "Update /etc/hosts"
     docker-machine ssh $DOCKER_MACHINE "sudo sed -i 's/^127\.0\.0\.1 "$DOCKER_MACHINE"/127.0.0.1/g' /etc/hosts"
-    docker-machine ssh $DOCKER_MACHINE "sudo sh -c 'echo "$IP $DOCKER_MACHINE" >> /etc/hosts'"
+    docker-machine ssh $DOCKER_MACHINE "sudo sed -i '/$HOST_IP $DOCKER_MACHINE/d' /etc/hosts"
+    docker-machine ssh $DOCKER_MACHINE "sudo sh -c 'echo "$HOST_IP $DOCKER_MACHINE" >> /etc/hosts'"
 }
 
 start_zookeeper

@@ -3,6 +3,7 @@ MAINTAINER Wu Muxian "wumuxian1988@gmail.com"
 
 ENV DEBIAN_FRONTEND noninteractive
 ENV SPARK_HOME /usr/local/spark
+ENV PYTHONPATH $SPARK_HOME/python:$SPARK_HOME/python/lib/py4j-0.9-src.zip
 
 RUN mkdir /scripts
 
@@ -22,8 +23,7 @@ COPY scripts/get_dependencies.sh /scripts/get_dependencies.sh
 RUN mkdir /usr/local/spark/dependencies
 RUN bash /scripts/get_dependencies.sh
 
-VOLUME /notebooks
-WORKDIR /notebooks
+WORKDIR /usr/local/spark
 
 COPY scripts/mesos_run.sh /scripts/mesos_run.sh
 
