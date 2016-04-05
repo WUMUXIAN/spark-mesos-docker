@@ -19,7 +19,13 @@ function get_jar_file {
   fi
 }
 
+function install_mysql_connector {
+    sudo apt-get install -y wget
+    wget http://dev.mysql.com/get/Downloads/Connector-Python/mysql-connector-python_2.1.3-1ubuntu14.04_all.deb -qO connector && sudo dpkg -i connector; rm connector
+}
+
 get_jar_file $HADOOP_AWS_JAR $HADOOP_AWS_JAR_URL
 get_jar_file $AWS_JAVA_SDK_JAR $AWS_JAVA_SDK_JAR_URL
 get_jar_file $MYSQL_JAVA_CONNECTOR $MYSQL_JAVA_CONNECTOR_URL
 get_jar_file $GOOGLE_COLLECTIONS $GOOGLE_COLLECTIONS_URL
+install_mysql_connector
